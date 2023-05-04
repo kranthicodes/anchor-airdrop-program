@@ -2,13 +2,13 @@ use anchor_lang::prelude::*;
 use anchor_spl::token;
 use anchor_spl::token::{Mint, MintTo, Token, TokenAccount};
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("8w26X5YoBxtkz4yFyhuuVEeodNXyMqZZnvbqe666ncnW");
 
 #[program]
 pub mod airdrop_program {
     use super::*;
 
-    pub fn initialize_mint(ctx: Context<InitializeMint>) -> Result<()> {
+    pub fn initialize_mint(ctx: Context<InitializeMint>, decimals: u8) -> Result<()> {
         msg!("Token mint initialized: {}", ctx.accounts.token_mint.key());
 
         Ok(())
@@ -45,6 +45,7 @@ pub struct InitializeMint<'info> {
         payer = payer
     )]
     pub token_mint: Account<'info, Mint>,
+    ///CHECK: using as a signer
     #[account(
         seeds = ["mint-authority".as_bytes()],
         bump,
@@ -61,6 +62,7 @@ pub struct InitializeMint<'info> {
 pub struct Airdrop<'info> {
     #[account(mut, seeds = ["token-mint".as_bytes()], bump)]
     pub token_mint: Account<'info, Mint>,
+    ///CHECK: using as a signer
     #[account(mut, seeds = ["mint-authority".as_bytes()], bump)]
     pub mint_authority: AccountInfo<'info>,
     #[account(mut)]
