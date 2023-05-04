@@ -39,7 +39,7 @@ describe("airdrop-program", async () => {
   });
 
   it("Airdrop tokens", async () => {
-    let userTokenAccount = await Keypair.generate();
+    let userTokenAccount = Keypair.generate();
     const tx = await program.methods
       .airdrop(new anchor.BN(12))
       .accounts({
@@ -57,7 +57,7 @@ describe("airdrop-program", async () => {
   });
 
   it("Airdropping more tokens", async () => {
-    let userTokenAccount = await Keypair.generate();
+    let userTokenAccount = Keypair.generate();
     const tx = await program.methods
       .airdrop(new anchor.BN(25))
       .accounts({
