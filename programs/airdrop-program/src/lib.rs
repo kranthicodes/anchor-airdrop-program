@@ -2,7 +2,7 @@ use anchor_lang::prelude::*;
 use anchor_spl::token;
 use anchor_spl::token::{Mint, MintTo, Token, TokenAccount};
 
-declare_id!("8w26X5YoBxtkz4yFyhuuVEeodNXyMqZZnvbqe666ncnW");
+declare_id!("FTjirr5htaj2cd3e1qA4y7XMBd1pVCCLTWGrzPY8iJeR");
 
 #[program]
 pub mod airdrop_program {
@@ -37,7 +37,7 @@ pub mod airdrop_program {
 #[instruction(decimals: u8)]
 pub struct InitializeMint<'info> {
     #[account(
-        init,
+        init_if_needed,
         mint::authority = mint_authority,
         mint::decimals = decimals,
         seeds = ["token-mint".as_bytes()],
@@ -67,7 +67,7 @@ pub struct Airdrop<'info> {
     pub mint_authority: AccountInfo<'info>,
     #[account(mut)]
     pub user: Signer<'info>,
-    #[account(init, token::mint = token_mint, token::authority = user, payer = user)]
+    #[account(mut)]
     pub user_token_account: Account<'info, TokenAccount>,
     pub rent: Sysvar<'info, Rent>,
     pub token_program: Program<'info, Token>,

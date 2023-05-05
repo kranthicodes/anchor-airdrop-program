@@ -2,13 +2,13 @@
 seeds = false
 skip-lint = false
 [programs.localnet]
-airdrop_program = "8w26X5YoBxtkz4yFyhuuVEeodNXyMqZZnvbqe666ncnW"
+airdrop_program = "FTjirr5htaj2cd3e1qA4y7XMBd1pVCCLTWGrzPY8iJeR"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "devnet"
+cluster = "https://compatible-magical-smoke.solana-devnet.discover.quiknode.pro/e9bc1c4014f20540345fc4215d1f969f72259f1b"
 wallet = "/Users/dexter/.config/solana/devnet.json"
 
 [scripts]
